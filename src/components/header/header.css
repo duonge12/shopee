@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.header-with-search__shopee-logo.icon-shopee-logo {
+    display: block;
+    height: 50px;
+    width: 162px;
+}
