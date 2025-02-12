@@ -1,3 +1,3 @@
-import { userSlice } from "./userSlice";
+import { cartSlice } from "./cartSlice";
 
-export {userSlice}
+export {cartSlice}

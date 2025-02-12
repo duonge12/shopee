@@ -9,9 +9,13 @@ export const user = {
     date_of_birth: "1964-09-02",
     membership_level: "Gold",
     wishlist: [],
-    cart: [],
     purchased_products: [],
     created_at: "2024-02-05T12:00:00Z",
     last_login: "2024-02-05T18:30:00Z"
 };
-  
+export const cartList=[
+    {
+        clientID:1,
+        cart: [],
+    }
+]

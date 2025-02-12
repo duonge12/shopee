@@ -1,14 +1,17 @@
 import { Bell, ChevronDown, Facebook, Globe, InstagramIcon, Search, ShieldQuestionIcon, ShoppingCart, User } from "lucide-react"
-import "./header.css"
+import "./index.css"
 import { ShopeeIcon } from "../../assets/icons"
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import { Modal } from "../modales"
+import { user } from "../../../config/data/user"
+import { Link } from "react-router-dom"
 
 
 export const Menu=()=>{
     const [visibleCart,setVisibleCart]=useState(false)
-    const user=useSelector(state=> state.user)
+    const cart=useSelector(state=> state.cart)
+    const clientCart=cart.filter(item=> item.clientID === user.id)[0]
     return(
         <div className="bg-[#fa5230]">
             <div className="max-w-[1200px] mx-auto"> 
@@ -32,17 +35,17 @@ export const Menu=()=>{
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <div className="ml-[40px] inline-block">
+                    <Link to={'/'} className="ml-[40px] inline-block">
                         <ShopeeIcon/>
-                    </div>
+                    </Link>
                     <div className="w-[840px]">
                         <SearchBar/>
                     </div>
-                    <div className="flex-1 px-6 relative" onMouseEnter={()=>setVisibleCart(true)} onMouseLeave={()=>setVisibleCart(false)}>
-                        <span className="absolute top-[-40%] text-[10px] left-[48px] bg-white py-[0.5px] px-[6px] rounded-full">{user.purchased_products.length}</span>
+                    <Link to={'/cartDetail/'+user.id} className="flex-1 px-6 relative" onMouseEnter={()=>setVisibleCart(true)} onMouseLeave={()=>setVisibleCart(false)} >
+                        <span className="absolute top-[-40%] text-[10px] left-[48px] bg-white py-[0.5px] px-[6px] rounded-full">{clientCart ? clientCart.cart.length : 0}</span>
                         <ShoppingCart/>
-                        <Modal open={visibleCart} purchased_products={user.purchased_products}/>
-                    </div>
+                        <Modal open={visibleCart} clientCart={clientCart.cart}/>
+                    </Link>
                 </div>
             </div>
         </div>

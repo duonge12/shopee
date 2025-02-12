@@ -1,9 +1,15 @@
 import { products } from "../../../config/data/data";
 
   
-  export function Modal({ open, purchased_products}) {
+  export function Modal({ open, clientCart}) {
     if (!open) return null;
-    const purchasedList=purchased_products.map((item,index)=>{
+    else if(clientCart.length === 0) 
+      return(
+        <div className="w-[400px] absolute top-[150%] right-[-50%] bg-white p-2 rounded-md">
+          CART EMPTY
+        </div>
+      )
+    const purchasedList=clientCart.map((item,index)=>{
         const product=products.filter((product,productIndex)=> product.id === item.id)[0];
         return(
             <div className="w-[400px] h-fit flex">
